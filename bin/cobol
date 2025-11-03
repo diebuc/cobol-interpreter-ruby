@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/cobol_interpreter'
+
+if ARGV.length != 1
+  puts "Usage: #{$0} <cobol_file>"
+  exit 1
+end
+
+filename = ARGV[0]
+unless File.exist?(filename)
+  puts "Error: File '#{filename}' not found"
+  exit 1
+end
+
+source_code = File.read(filename)
+interpreter = CobolInterpreter.new
+interpreter.run(source_code)
